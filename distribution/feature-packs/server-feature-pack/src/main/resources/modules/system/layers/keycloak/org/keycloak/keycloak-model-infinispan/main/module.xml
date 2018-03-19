@@ -31,7 +31,7 @@
         <module name="org.keycloak.keycloak-server-spi-private"/>
         <module name="org.infinispan"/>
         <module name="org.infinispan.commons"/>
-        <module name="org.infinispan.cachestore.remote"/>
+        <module name="org.infinispan.persistence.remote"/>
         <module name="org.infinispan.client.hotrod"/>
         <module name="org.jgroups"/>
         <module name="org.jboss.logging"/>
