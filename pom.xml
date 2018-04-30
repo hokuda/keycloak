@@ -53,7 +53,9 @@
 
         <jboss.as.version>7.2.0.Final</jboss.as.version>
 
-        <aesh.version>0.66.19</aesh.version>
+        <jboss.aesh.version>0.66.19</jboss.aesh.version>
+        <aesh.version>1.0</aesh.version>
+        <aesh.readline.version>1.3</aesh.readline.version>
         <apache.httpcomponents.version>4.5.2</apache.httpcomponents.version>
         <apache.httpcomponents.httpcore.version>4.4.4</apache.httpcomponents.httpcore.version>
         <apache.mime4j.version>0.6</apache.mime4j.version>
@@ -705,7 +707,17 @@
             <dependency>
                 <groupId>org.jboss.aesh</groupId>
                 <artifactId>aesh</artifactId>
+                <version>${jboss.aesh.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aesh</groupId>
+                <artifactId>aesh</artifactId>
                 <version>${aesh.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aesh</groupId>
+                <artifactId>aesh-readline</artifactId>
+                <version>${aesh.readline.version}</version>
             </dependency>
 
             <!-- keycloak -->

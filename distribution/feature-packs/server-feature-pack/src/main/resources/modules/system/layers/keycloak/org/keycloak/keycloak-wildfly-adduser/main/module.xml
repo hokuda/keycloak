@@ -32,7 +32,7 @@
         <module name="org.keycloak.keycloak-server-spi" services="import"/>
         <module name="org.keycloak.keycloak-server-spi-private" services="import"/>
         <module name="org.keycloak.keycloak-services" services="import"/>
-        <module name="org.jboss.aesh"/>
+        <module name="org.aesh"/>
         <module name="org.jboss.as.domain-management"/>
         <module name="com.fasterxml.jackson.core.jackson-core"/>
         <module name="com.fasterxml.jackson.core.jackson-annotations"/>
