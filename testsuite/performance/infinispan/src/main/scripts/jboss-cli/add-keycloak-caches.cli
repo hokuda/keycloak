@@ -15,7 +15,7 @@ cd /subsystem=datagrid-jgroups
 # 3)
 cd /subsystem=datagrid-infinispan/cache-container=clustered/configurations=CONFIGURATIONS
 
-./replicated-cache-configuration=sessions-cfg:add(mode=SYNC, start=EAGER, batching=false)
+./replicated-cache-configuration=sessions-cfg:add(start=EAGER, batching=false)
 cd replicated-cache-configuration=sessions-cfg
 ./transaction=TRANSACTION:add(mode=NON_DURABLE_XA, locking=PESSIMISTIC)
 ./locking=LOCKING:add(acquire-timeout=0)

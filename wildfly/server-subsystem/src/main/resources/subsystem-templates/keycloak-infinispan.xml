@@ -24,12 +24,12 @@
     </subsystem>
     <supplement name="default">
         <replacement placeholder="CACHE-CONTAINERS">
-            <cache-container name="keycloak" jndi-name="infinispan/Keycloak">
+            <cache-container name="keycloak">
                 <local-cache name="realms">
-                    <eviction max-entries="10000" strategy="LRU"/>
+                    <object-memory size="10000"/>
                 </local-cache>
                 <local-cache name="users">
-                    <eviction max-entries="10000" strategy="LRU"/>
+                    <object-memory size="10000"/>
                 </local-cache>
                 <local-cache name="sessions"/>
                 <local-cache name="authenticationSessions"/>
@@ -39,14 +39,14 @@
                 <local-cache name="loginFailures"/>
                 <local-cache name="work"/>
                 <local-cache name="authorization">
-                    <eviction max-entries="10000" strategy="LRU"/>
+                    <object-memory size="10000"/>
                 </local-cache>
                 <local-cache name="keys">
-                    <eviction max-entries="1000" strategy="LRU"/>
+                    <object-memory size="10000"/>
                     <expiration max-idle="3600000" />
                 </local-cache>
                 <local-cache name="actionTokens">
-                    <eviction max-entries="-1" strategy="NONE"/>
+                    <object-memory size="-1"/>
                     <expiration max-idle="-1" interval="300000"/>
                 </local-cache>
             </cache-container>
@@ -85,30 +85,30 @@
     </supplement>
     <supplement name="ha">
         <replacement placeholder="CACHE-CONTAINERS">
-            <cache-container name="keycloak" jndi-name="infinispan/Keycloak">
+            <cache-container name="keycloak">
                 <transport lock-timeout="60000"/>
                 <local-cache name="realms">
-                    <eviction max-entries="10000" strategy="LRU"/>
+                    <object-memory size="10000"/>
                 </local-cache>
                 <local-cache name="users">
-                    <eviction max-entries="10000" strategy="LRU"/>
+                    <object-memory size="10000"/>
                 </local-cache>
-                <distributed-cache name="sessions" mode="SYNC" owners="1"/>
-                <distributed-cache name="authenticationSessions" mode="SYNC" owners="1"/>
-                <distributed-cache name="offlineSessions" mode="SYNC" owners="1"/>
-                <distributed-cache name="clientSessions" mode="SYNC" owners="1"/>
-                <distributed-cache name="offlineClientSessions" mode="SYNC" owners="1"/>
-                <distributed-cache name="loginFailures" mode="SYNC" owners="1"/>
+                <distributed-cache name="sessions" owners="1"/>
+                <distributed-cache name="authenticationSessions" owners="1"/>
+                <distributed-cache name="offlineSessions" owners="1"/>
+                <distributed-cache name="clientSessions" owners="1"/>
+                <distributed-cache name="offlineClientSessions" owners="1"/>
+                <distributed-cache name="loginFailures" owners="1"/>
                 <local-cache name="authorization">
-                    <eviction max-entries="10000" strategy="LRU"/>
+                    <object-memory size="10000"/>
                 </local-cache>
-                <replicated-cache name="work" mode="SYNC" />
+                <replicated-cache name="work" />
                 <local-cache name="keys">
-                    <eviction max-entries="1000" strategy="LRU"/>
+                    <object-memory size="10000"/>
                     <expiration max-idle="3600000" />
                 </local-cache>
-                <distributed-cache name="actionTokens" mode="SYNC" owners="2">
-                    <eviction max-entries="-1" strategy="NONE"/>
+                <distributed-cache name="actionTokens" owners="2">
+                    <object-memory size="-1"/>
                     <expiration max-idle="-1" interval="300000"/>
                 </distributed-cache>
             </cache-container>

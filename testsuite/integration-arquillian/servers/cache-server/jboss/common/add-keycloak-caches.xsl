@@ -35,7 +35,7 @@
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" />
 
-            <replicated-cache-configuration name="sessions-cfg" mode="SYNC" start="EAGER" batching="false">
+            <replicated-cache-configuration name="sessions-cfg" start="EAGER" batching="false">
                 <transaction mode="NON_DURABLE_XA" locking="PESSIMISTIC"/>
                 <locking acquire-timeout="0" />
                 <backups>
