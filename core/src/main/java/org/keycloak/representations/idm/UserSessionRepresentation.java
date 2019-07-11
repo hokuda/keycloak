@@ -17,7 +17,6 @@
 
 package org.keycloak.representations.idm;
 
-import org.keycloak.common.DeviceInfo;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +29,6 @@ public class UserSessionRepresentation {
     private String username;
     private String userId;
     private String ipAddress;
-    private DeviceInfo deviceInfo;
     private long start;
     private long lastAccess;
     private Map<String, String> clients = new HashMap<String, String>();
@@ -65,14 +63,6 @@ public class UserSessionRepresentation {
 
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
-    }
-
-    public DeviceInfo getDeviceInfo() {
-        return deviceInfo;
-    }
-
-    public void setDeviceInfo(DeviceInfo deviceInfo) {
-        this.deviceInfo = deviceInfo;
     }
 
     public long getStart() {

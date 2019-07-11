@@ -26,5 +26,6 @@
         <module name="javax.activation.api"/>
         <module name="org.jboss.logging"/>
         <module name="sun.jdk" optional="true" />
+        <module name="com.github.ua-parser"/>
     </dependencies>
 </module>

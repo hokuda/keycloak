@@ -19,6 +19,7 @@ package org.keycloak.services.resources.account;
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.jboss.resteasy.spi.HttpRequest;
 import org.keycloak.common.ClientConnection;
+import org.keycloak.common.DeviceInfo;
 import org.keycloak.events.Details;
 import org.keycloak.events.EventBuilder;
 import org.keycloak.events.EventStoreProvider;
@@ -217,7 +218,7 @@ public class AccountRestService {
             SessionRepresentation rep = new SessionRepresentation();
             rep.setId(s.getId());
             rep.setIpAddress(s.getIpAddress());
-            rep.setDeviceInfo(s.getDeviceInfo());
+            rep.setDeviceInfo(session.getContext().getConnection().getDeviceInfo());
             rep.setStarted(s.getStarted());
             rep.setLastAccess(s.getLastSessionRefresh());
             rep.setExpires(s.getStarted() + realm.getSsoSessionMaxLifespan());

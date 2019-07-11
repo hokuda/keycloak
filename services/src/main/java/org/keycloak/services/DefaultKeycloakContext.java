@@ -112,6 +112,7 @@ public class DefaultKeycloakContext implements KeycloakContext {
 
     @Override
     public void setConnection(ClientConnection connection) {
+
         this.connection = connection;
     }
 

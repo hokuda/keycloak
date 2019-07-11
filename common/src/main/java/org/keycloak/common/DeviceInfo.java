@@ -1,5 +1,10 @@
 package org.keycloak.common;
 
+import ua_parser.Client;
+import ua_parser.Parser;
+
+import java.io.IOException;
+
 public class DeviceInfo {
     public static String ID = "DEVICE_INFO";
     private String device;
@@ -21,12 +26,33 @@ public class DeviceInfo {
         this.userAgent = userAgent;
     }
 
-    public static DeviceInfo create(String deviceInfo) {
-        if (deviceInfo != null && deviceInfo.matches(".*:.*:.*:.*:.*:.*")) {
-            String[] info = deviceInfo.split(":");
-            return new DeviceInfo(info[0], info[1], info[2], info[3], info[4], info[5]);
-        } else
-            return new DeviceInfo("", "", "", "", "", "");
+    public static DeviceInfo create(String userAgent) {
+        try {
+            Parser parser = new Parser();
+            if(userAgent == null)
+                return new DeviceInfo();
+            Client client = parser.parse(userAgent);
+
+            String device = client.device.family;
+            String browser = client.userAgent.family;
+            String browserVersion = client.userAgent.major;
+            if (client.userAgent.minor != null)
+                browserVersion += "." + client.userAgent.minor;
+            if (client.userAgent.patch != null)
+                browserVersion += "." + client.userAgent.patch;
+            String os = client.os.family;
+            String osVersion = client.os.major;
+            if (client.os.minor != null)
+                osVersion += "." + client.os.minor;
+            if (client.os.patch != null)
+                osVersion += "." + client.os.patch;
+            if (client.os.patchMinor != null)
+                osVersion += "." + client.os.patchMinor;
+
+            return new DeviceInfo(device, browser, browserVersion, os, osVersion, userAgent);
+        } catch (IOException e) {
+            return new DeviceInfo();
+        }
     }
 
     public String getDevice() {
@@ -78,18 +104,6 @@ public class DeviceInfo {
     }
 
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(device);
-        builder.append(':');
-        builder.append(browser);
-        builder.append(':');
-        builder.append(browserVersion);
-        builder.append(':');
-        builder.append(os);
-        builder.append(':');
-        builder.append(osVersion);
-        builder.append(':');
-        builder.append(userAgent);
-        return builder.toString();
+        return userAgent;
     }
 }

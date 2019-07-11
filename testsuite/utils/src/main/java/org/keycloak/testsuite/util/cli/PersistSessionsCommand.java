@@ -21,7 +21,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.keycloak.common.DeviceInfo;
 import org.keycloak.models.AuthenticatedClientSessionModel;
 import org.keycloak.models.ClientModel;
 import org.keycloak.models.KeycloakSession;
@@ -90,7 +89,7 @@ public class PersistSessionsCommand extends AbstractCommand {
                         john = session.users().addUser(realm, username);
                     }
 
-                    UserSessionModel userSession = session.sessions().createUserSession(realm, john, username, "127.0.0.2", new DeviceInfo(),"form", true, null, null);
+                    UserSessionModel userSession = session.sessions().createUserSession(realm, john, username, "127.0.0.2", "form", true, null, null);
                     AuthenticatedClientSessionModel clientSession = session.sessions().createClientSession(realm, testApp, userSession);
                     clientSession.setRedirectUri("http://redirect");
                     clientSession.setNote("foo", "bar-" + i);
