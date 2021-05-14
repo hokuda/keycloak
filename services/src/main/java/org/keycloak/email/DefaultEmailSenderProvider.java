@@ -204,7 +204,7 @@ public class DefaultEmailSenderProvider implements EmailSenderProvider {
         try {
             String[] protocols = SSLContext.getDefault().getSupportedSSLParameters().getProtocols();
             if (protocols != null) {
-                return String.join(" ", protocols);
+                return String.join(" ", protocols);//.replaceAll(" ?SSLv2Hello","");
             }
         } catch (Exception e) {
             logger.warn("Failed to get list of supported SSL protocols", e);

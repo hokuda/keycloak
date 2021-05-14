@@ -141,6 +141,15 @@ public class SMTPConnectionTest extends AbstractKeycloakTest {
         }
     }
 
+    //KEYCLOAK-16917
+    @Test
+    @AuthServerContainerExclude(AuthServer.REMOTE)
+    public void testStartTls() throws Exception {
+        Response response = realm.testSMTPConnection(settings("smtp.office365.com", "587", "auto@keycloak.org", "false", "false", "true", "", ""));
+        assertStatus(response, 204);
+        assertMailReceived();
+    }
+
     private void assertStatus(Response response, int status) {
         assertEquals(status, response.getStatus());
         response.close();
